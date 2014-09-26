@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_URI} !(\.jpg|\.css|\.js|\.mp3|\.png)$ [NC]
+	RewriteEngine On
+	RewriteRule ^(?!index\.php).* index.php?url=$0 [L]
+</IfModule>
