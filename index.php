@@ -35,9 +35,10 @@
     //maak de controller aan
     $controller = new $controllerVolledigeNaam($url);
     
-    $viewString = $controller->getView();
-    
     include('resources/html/header.php');
+    
+    //haal de view op, en als die niet bestaat, geef een melding
+    $viewString = $controller->getView();
     if(file_exists($viewString))
     {
         include($viewString);
