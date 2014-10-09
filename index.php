@@ -12,7 +12,7 @@
     session_start(); //de meeste pagina's hebben dit nodig, dus heb ik besloten dit standaard te doen
 
     require_once('library/config.php'); //in de config staan de essentiele zaken, die elke pagina nodig heeft
-    require_once('library/autoload.php');
+    require_once('library/bootstrap.php');
     /*
         haal de urlvariabelen op (het deel achter de slash, zie ook .htaccess)  
         de eerste urlvariabele is de pagina, de rest zijn variabelen m.b.t. de pagina
