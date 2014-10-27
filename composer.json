@@ -3,8 +3,6 @@
         "doctrine/orm": "2.4.*"
     },
     "autoload": {
-        "psr-4": {"Engine\\Model\\": "engine/model/"},
-        "psr-4": {"Engine\\View\\": "engine/view/"},
-        "psr-4": {"Engine\\Controller\\": "engine/controller/"}
+        "psr-4": {"Engine\\": "engine/"}
     }
 }

@@ -45,7 +45,7 @@
     }
     else
     {
-        echo"<h1>View niet gevonden</h1>";
+        //echo"<h1>View niet gevonden</h1>";
     }
     include('resources/html/footer.htm');
     

@@ -2,6 +2,7 @@
 namespace Engine\Controller;
 
 use Engine\Controller\iController;
+use Engine\Model\Test;
 
 class HomeController implements iController
 {
@@ -9,7 +10,7 @@ class HomeController implements iController
     
     public function __construct($url)
     {
-        echo "hello world";
+        $this->test = new Test();
     }
     
     public function setView($view)
@@ -20,6 +21,11 @@ class HomeController implements iController
     public function getView()
     {
         
+    }
+    
+    public function setTest(Test $test)
+    {
+        $this->test = $test;
     }
     
 }
