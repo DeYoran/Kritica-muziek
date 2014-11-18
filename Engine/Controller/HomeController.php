@@ -2,30 +2,38 @@
 namespace Engine\Controller;
 
 use Engine\Controller\iController;
-use Engine\Model\Test;
+use Engine\View\View;
+use Engine\View\Home;
 
 class HomeController implements iController
 {
-    private $test;
+    private $view;
     
-    public function __construct($url)
+    public function __construct()
     {
-        $this->test = new Test();
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
+        else
+        {
+            var_dump($_SESSION);
+            //code continues normally
+        }
+        
+        
+        
     }
     
-    public function setView($view)
+    public function setView(View $view)
     {
-        
+        $this->view = $view;
     }
     
     public function getView()
     {
-        
-    }
-    
-    public function setTest(Test $test)
-    {
-        $this->test = $test;
+        return $this->view;
     }
     
 }

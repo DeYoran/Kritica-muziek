@@ -1,1 +1,10 @@
-<img src="file:///C:/Users/Yoran/Desktop/telefoon/Pictures/9GAG/Bah-dum-tes.jpg">
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <header>
+            
+        </header>
+        <section>

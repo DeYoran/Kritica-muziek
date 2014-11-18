@@ -1,12 +1,10 @@
 <?php
+    use Engine\View\FourOhFour;
     
 	/* 
 		PROJECT KRITICA 
 		
 		TODO
-			zoek uit hoe dit ook al weer werkt
-			documenteer deze pagen
-			maak logische variabelenamen
 			maak todo lijst
 	*/
     session_start(); //de meeste pagina's hebben dit nodig, dus heb ik besloten dit standaard te doen
@@ -38,14 +36,18 @@
     include('resources/html/header.php');
     
     //haal de view op, en als die niet bestaat, geef een melding
-    $viewString = $controller->getView();
-    if(file_exists($viewString))
+
+    $view = $controller->getView();
+    
+    if( $view != null)
     {
-        include($viewString);
+        $view->view();
     }
     else
     {
-        //echo"<h1>View niet gevonden</h1>";
+        $view = new FourOhFour();
+        $view->view();
     }
+    
     include('resources/html/footer.htm');
     
