@@ -1,0 +1,11 @@
+body{
+    background-color: #00000f;
+    color: white;
+    font-family: sans-serif;
+}
+
+#login{
+    position: relative;
+    margin: auto;
+    top: 100px;
+}

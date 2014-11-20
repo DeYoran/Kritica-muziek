@@ -9,7 +9,7 @@ class HomeController implements iController
 {
     private $view;
     
-    public function __construct()
+    public function __construct($entityManager)
     {
         if(!isset($_SESSION['kr-user']))
         {

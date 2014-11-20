@@ -1,5 +1,9 @@
 <?php
     use Engine\View\FourOhFour;
+    include 'Engine/Model/Inlog.php';
+{
+    
+}
     
 	/* 
 		PROJECT KRITICA 
@@ -21,7 +25,7 @@
     if($urlvar == ''){
         $urlvar = 'Home';
     }
-
+    
     //zet de urlvariabelen in een array
     $url = explode('/',$urlvar);
     
@@ -31,7 +35,7 @@
     $controllerVolledigeNaam = 'Engine\\Controller\\' . $controllerNaam;
     
     //maak de controller aan
-    $controller = new $controllerVolledigeNaam($url);
+    $controller = new $controllerVolledigeNaam($entityManager, $url);
     
     include('resources/html/header.php');
     
