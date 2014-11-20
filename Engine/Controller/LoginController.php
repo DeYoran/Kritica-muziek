@@ -19,9 +19,17 @@ class LoginController implements iController
     {
         if(isset($_POST['naam']))
         {
+            $user = new Inlog();
             $user = $entityManager->find("Engine\Model\Inlog",$_POST['naam']);
+            if($user->checkPass($_POST['pass'])){
+                $_SESSION['kr-user'] = $user;
+                header("Location: /home");
+            }
+            else{
+                echo "wachtwoord incorrect";
+                header( "refresh:5;url=/login" );
+            }
             $this->view = new EmptyPage();
-            var_dump($user);
         }
         else
         {
