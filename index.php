@@ -1,6 +1,5 @@
 <?php
     use Engine\View\FourOhFour;
-    include 'Engine/Model/Inlog.php';
 {
     
 }

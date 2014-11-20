@@ -19,7 +19,7 @@ class LoginController implements iController
     {
         if(isset($_POST['naam']))
         {
-            $user = $entityManager->find("Inlog",$_POST['naam']);
+            $user = $entityManager->find("Engine\Model\Inlog",$_POST['naam']);
             $this->view = new EmptyPage();
             var_dump($user);
         }
