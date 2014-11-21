@@ -3,16 +3,10 @@ namespace Engine\Controller;
 use Engine\Controller\iController;
 use Engine\View\View;
 
-class nummerController implements iController
+class nummerController extends listController
 {
-    public function getView()
+    public function __construct()
     {
         
     }
-
-    public function setView(View $view)
-    {
-        
-    }
-
 }

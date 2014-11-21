@@ -3,16 +3,10 @@ namespace Engine\Controller;
 use Engine\Controller\iController;
 use Engine\View\View;
 
-class albumController implements iController
+class albumController extends listController
 {
-    public function getView()
+    public function __construct()
     {
         
     }
-
-    public function setView(View $view)
-    {
-        
-    }
-
 }
