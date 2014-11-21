@@ -8,12 +8,12 @@ class EmptyPage implements View
 
     public function __construct()
     {
-        
+        $this->content = " ";
     }
     
     public function view()
     {
-        
+        echo $this->content;
     }
     
 }

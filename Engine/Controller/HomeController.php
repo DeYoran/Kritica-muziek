@@ -18,11 +18,10 @@ class HomeController implements iController
         }
         else
         {
-            var_dump($_SESSION);
-            //code continues normally
+            
         }
         
-        
+        $this->view = new Home();
         
     }
     
