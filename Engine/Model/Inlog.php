@@ -10,7 +10,7 @@ class Inlog
     protected $naam;
 	
     /** @Column(type="string") **/
-    protected $pass;
+    protected $wachtwoord;
     
     /** @Column(type="string") **/
     protected $salt;
@@ -25,11 +25,11 @@ class Inlog
     
     public function setPass($pass){
         $this->salt = hash("crc32", time());
-        $this->pass = hash("sha256",$pass.$this->salt);
+        $this->wachtwoord = hash("sha256",$pass.$this->salt);
     }
     
     public function checkPass($pass){
-        return hash("sha256",$pass.$this->salt) === $this->pass;
+        return hash("sha256",$pass.$this->salt) === $this->wachtwoord;
     }
 
 }

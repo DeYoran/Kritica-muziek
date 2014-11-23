@@ -4,8 +4,68 @@ body{
     font-family: sans-serif;
 }
 
+header{
+    position: fixed;
+    height: 70px;
+    background-color: #226;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.headerknop:link, .headerknop:visited{
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 20px;
+    margin: auto 30px;
+    top: 24px;
+    text-decoration: none;
+    color: black;
+    background-color: #fca;
+    text-align: center;
+    border-radius: 25px;
+    float: right;
+}
+
+#regisknop:link, #inlogknop:link{
+    margin: auto 10px;
+}
+
+section{
+    top: 80px;
+    position: relative;
+}
+
 #login{
     position: relative;
     margin: auto;
     top: 100px;
+}
+
+header h1{
+    display: inline-block;
+}
+
+section{
+    text-align: center;
+}
+
+.homebutton{
+    display: inline-block;
+    background-color: #ddd;
+    height: 200px;
+    width: 200px;
+    margin: 40px 100px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.homebutton:hover{
+    box-shadow: 0 0 50px 0px blue ;
+}
+
+.homebutton img{
+    width: 200px;
 }
