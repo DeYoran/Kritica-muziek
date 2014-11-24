@@ -14,6 +14,9 @@ class Inlog
     
     /** @Column(type="string") **/
     protected $salt;
+    
+    /** @Column(type="boolean") **/
+    protected $toegang;
 
     public function __construct() {
         

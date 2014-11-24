@@ -44,6 +44,20 @@ class Album
      **/
     private $liedjes;
     
+    /**
+     * @ManyToMany(targetEntity="Artiest", inversedBy="albums")
+     * @JoinTable(
+     *  name="albumArtiest",
+     *  joinColumns={
+     *   @JoinColumn(name="albumNummer", referencedColumnName="albumNummer")
+     *  },
+     *  inverseJoinColumns={
+     *   @JoinColumn(name="naam", referencedColumnName="naam")
+     *  }
+     * )
+     **/
+    private $artiesten;
+    
     public function __construct()
     {
         $this->genres = new ArrayCollection();
@@ -52,6 +66,11 @@ class Album
     public function getGenres()
     {
         return $this->genres->getValues();
+    }
+
+    function getArtiesten()
+    {
+        return $this->artiesten->getValues();
     }
     
     public function getAlbumNummer(){
@@ -77,6 +96,16 @@ class Album
     {
         return $this->lokatie;
     }
+    
+    function getLiedjes()
+    {
+        return $this->liedjes->getValues();
+    }
+    
+    function getAantalLiedjes()
+    {
+        return $this->liedjes->count();
+    }
 
     function setNaam($naam)
     {
@@ -92,7 +121,5 @@ class Album
     {
         $this->lokatie = $lokatie;
     }
-
-
 
 }

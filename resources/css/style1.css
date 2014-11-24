@@ -69,3 +69,28 @@ section{
 .homebutton img{
     width: 200px;
 }
+
+table{
+    position: relative;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: #115; 
+    text-align: left;
+}
+
+thead{
+    background-color: white;
+    color: #00000f;
+}
+
+tr:nth-child(even){
+   background-color: #226; 
+}
+
+td{
+    border: 1px solid white;
+    padding: 1px 10px;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+}

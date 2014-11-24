@@ -17,6 +17,14 @@ class Genre
      * @ManyToMany(targetEntity="Album", mappedBy="genres")
      **/
     private $albums;
+    /**
+     * @ManyToMany(targetEntity="Liedje", mappedBy="genres")
+     **/
+    private $liedjes;
+    /**
+     * @ManyToMany(targetEntity="Artiest", mappedBy="genres")
+     **/
+    private $artiesten;
     
     public function __construct()
     {
@@ -26,6 +34,10 @@ class Genre
     public function getAlbums()
     {
         return $this->albums->getValues();
+    }
+    
+    function __toString(){
+        return $this->naam;
     }
     
 }

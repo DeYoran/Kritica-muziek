@@ -20,7 +20,18 @@ class ListView implements View
         foreach ($rows as $row){
             $this->content .= "<tr>";
             foreach ($row as $element){
-                $this->content .= "<td>$element</td>";
+                if(is_array($element))
+                {
+                    $this->content .= "<td>";
+                    foreach ($element as $value){
+                        $this->content .= "$value<br />";
+                    }
+                    $this->content .= "</td>";
+                }
+                else
+                {
+                    $this->content .= "<td>$element</td>";
+                }
             }
             $this->content .= "</tr>";
         }
