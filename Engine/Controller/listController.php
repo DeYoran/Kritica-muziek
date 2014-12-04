@@ -8,9 +8,9 @@ abstract class listController implements iController
 {
     protected $view;
     
-    public function __construct(array $colums, array $rows)
+    public function __construct(array $colums, array $rows, $link = false, $target = null)
     {
-        $this->view = new ListView($colums, $rows);
+        $this->view = new ListView($colums, $rows, $link, $target);
     }
 
         public function getView()

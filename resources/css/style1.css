@@ -1,13 +1,12 @@
 body{
-    background-color: #00000f;
-    color: white;
+    color: black;
     font-family: sans-serif;
 }
 
 header{
     position: fixed;
     height: 70px;
-    background-color: #226;
+    background-color: #ddd;
     width: 100%;
     top: 0;
     left: 0;
@@ -23,7 +22,7 @@ header{
     top: 24px;
     text-decoration: none;
     color: black;
-    background-color: #fca;
+    background-color: #aaa;
     text-align: center;
     border-radius: 25px;
     float: right;
@@ -42,6 +41,12 @@ section{
     position: relative;
     margin: auto;
     top: 100px;
+    width: 300px;
+    border: 1px solid white;
+}
+
+#login td{
+    border: none;
 }
 
 header h1{
@@ -67,30 +72,64 @@ section{
 }
 
 .homebutton img{
-    width: 200px;
+    width: 150px;
+}
+
+.homebutton a{
+    font-size: 30px;
+    color: black;
+    text-decoration: none;
 }
 
 table{
     position: relative;
     margin: auto;
     border-collapse: collapse;
-    background-color: #115; 
     text-align: left;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 thead{
-    background-color: white;
-    color: #00000f;
+    font-weight: bold;
 }
-
-tr:nth-child(even){
-   background-color: #226; 
-}
-
 td{
-    border: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     padding: 1px 10px;
-    max-width: 250px;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.xdebug-error{
+    color: black;
+    z-index: 1000;
+}
+
+tr.link:hover{
+    background-color: #ddd;
+}
+
+tr a:link, tr a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+input[type=search]{
+    border-radius: 20px;
+}
+
+.paginate_button.current{
+    background: #ddd !important;
+    border: 1px solid white !important;
+}
+
+.paginate_button:hover{
+    background: #777 !important;
+    border: 1px solid white !important;
+}
+
+.paginate_button.disabled:hover{
+    background: white !important;
+    border: 1px solid white !important;
 }

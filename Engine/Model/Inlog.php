@@ -34,5 +34,17 @@ class Inlog
     public function checkPass($pass){
         return hash("sha256",$pass.$this->salt) === $this->wachtwoord;
     }
+    
+    public function getToegang(){
+        return $this->toegang;
+    }
+    
+    public function setNaam($naam){
+        $this->naam = $naam;
+    }
+    
+    public function setToegang($toegang){
+        $this->toegang = $toegang;
+    }
 
 }

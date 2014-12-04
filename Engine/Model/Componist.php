@@ -6,6 +6,7 @@ namespace Engine\Model;
  **/
 class Componist
 {
+    /** @Id @Column(type="string") **/
     private $componist;
     
     /**
@@ -18,5 +19,14 @@ class Componist
         
     }
 
+    public function getAllLiedjes()
+    {
+        return $this->liedjes_->getValues();
+    }
+    
+    public function __toString()
+    {
+        return $this->componist;
+    }
     
 }

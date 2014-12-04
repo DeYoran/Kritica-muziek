@@ -4,6 +4,7 @@ use Engine\View\View;
 use Engine\View\Login;
 use Engine\View\EmptyPage;
 use Engine\View\VerkeerdWachtwoord;
+use Engine\View\GeenToegang;
 use Engine\Model\Inlog;
 
 /**
@@ -23,9 +24,15 @@ class LoginController implements iController
             $user = new Inlog();
             $user = $entityManager->find("Engine\Model\Inlog",$_POST['naam']);
             if($user != null && $user->checkPass($_POST['pass'])){
-                $_SESSION['kr-user'] = $user;
-                header("Location: /home");
-                $this->view = new EmptyPage();
+                if($user->getToegang()){
+                    $_SESSION['kr-user'] = $user;
+                    header("Location: /home");
+                    $this->view = new EmptyPage();
+                }
+                else{
+                    $this->view = new GeenToegang();
+                    header( "refresh:5;url=/login" );
+                }
             }
             else{
                 $this->view = new VerkeerdWachtwoord();

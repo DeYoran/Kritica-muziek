@@ -6,6 +6,7 @@ namespace Engine\Model;
  **/
 class Producer
 {
+    /** @Id @Column(type="string") **/
     private $producer;
     
     /**
@@ -16,6 +17,16 @@ class Producer
     function __construct()
     {
         
+    }
+
+    public function getAllLiedjes()
+    {
+        return $this->liedjes_->getValues();
+    }
+    
+    public function __toString()
+    {
+        return $this->producer;
     }
 
 }

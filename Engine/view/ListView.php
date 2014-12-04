@@ -8,7 +8,7 @@ class ListView implements View
     
     private $content;
 
-    public function __construct(array $colums, array $rows)
+    public function __construct(array $colums, array $rows, $link, $target)
     {
         $this->content = "";
         $this->content .= file_get_contents("./Engine/view/pages/listhead.php");
@@ -18,19 +18,35 @@ class ListView implements View
         }
         $this->content .= "<thead>".$headings."</thead>";
         foreach ($rows as $row){
-            $this->content .= "<tr>";
+            $linkto = $row[0];
+            array_shift($row);
+            $this->content .= "<tr class='link'>";
             foreach ($row as $element){
                 if(is_array($element))
                 {
                     $this->content .= "<td>";
+                    if($link){
+                       $this->content .= "<a href='".$target.$linkto."'>";
+                    }
                     foreach ($element as $value){
                         $this->content .= "$value<br />";
+                    }
+                    if($link){
+                       $this->content .= "</a>";
                     }
                     $this->content .= "</td>";
                 }
                 else
                 {
-                    $this->content .= "<td>$element</td>";
+                    $this->content .= "<td>";
+                    if($link){
+                       $this->content .= "<a href='".$target.$linkto."'>";
+                    }
+                    $this->content .= $element;
+                    if($link){
+                       $this->content .= "</a>";
+                    }
+                    $this->content .= "</td>";
                 }
             }
             $this->content .= "</tr>";

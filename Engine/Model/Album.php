@@ -60,23 +60,14 @@ class Album
     
     public function __construct()
     {
-        $this->genres = new ArrayCollection();
-    }
-
-    public function getGenres()
-    {
-        return $this->genres->getValues();
-    }
-
-    function getArtiesten()
-    {
-        return $this->artiesten->getValues();
+        
     }
     
-    public function getAlbumNummer(){
+    function getAlbumNummer()
+    {
         return $this->albumNummer;
     }
-    
+
     function getNaam()
     {
         return $this->naam;
@@ -86,25 +77,40 @@ class Album
     {
         return $this->verschijningsdatum;
     }
-    
-    function getVerschijningsdatumString()
-    {
-        return $this->verschijningsdatum->format('Y-m-d');
-    }
 
     function getLokatie()
     {
         return $this->lokatie;
     }
-    
+
+    function getGenres()
+    {
+        return $this->genres;
+    }
+
     function getLiedjes()
+    {
+        return $this->liedjes;
+    }
+
+    function getArtiesten()
+    {
+        return $this->artiesten;
+    }
+
+    function getAllGenres()
+    {
+        return $this->genres->getValues();
+    }
+
+    function getAllLiedjes()
     {
         return $this->liedjes->getValues();
     }
-    
-    function getAantalLiedjes()
+
+    function getAllArtiesten()
     {
-        return $this->liedjes->count();
+        return $this->artiesten->getValues();
     }
 
     function setNaam($naam)
@@ -122,4 +128,8 @@ class Album
         $this->lokatie = $lokatie;
     }
 
+    function __toString()
+    {
+        return $this->naam;
+    }
 }

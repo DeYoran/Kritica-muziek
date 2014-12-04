@@ -8,18 +8,21 @@ class nummerController extends listController
     public function __construct($entitymanager)
     {
         $array = $entitymanager->getRepository("Engine\Model\Liedje")->findAll();
-        $colums = array("Naam", "Verschenen", "Lokatie", "Artiest(en)", "Genre(s)", "Tracks");
+        $colums = array("Naam", "Album(s)", "Lokatie(s)", "Genre(s)");
         $rows = array();
         foreach ($array as $object){
             $row = array();
+            $row[] = $object->getLiedNummer();
             $row[] = $object->getNaam();
-            $row[] = $object->getVerschijningsdatumString();
-            $row[] = $object->getLokatie();
-            $row[] = $object->getArtiesten();
-            $row[] = $object->getGenres();
-            $row[] = $object->getAantalLiedjes();
+            $row[] = $object->getAllAlbums();
+            $lokaties = array();
+            foreach ($object->getAllAlbums() as $album){
+                $lokaties[] = $album->getLokatie();
+            }
+            $row[] = $lokaties;
+            $row[] = $object->getAllGenres();
             $rows[] = $row;
         }
-        parent::__construct($colums, $rows);
+        parent::__construct($colums, $rows, TRUE, "/liedje/");
     }
 }

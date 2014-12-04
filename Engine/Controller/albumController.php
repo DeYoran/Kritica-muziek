@@ -11,14 +11,14 @@ class albumController extends listController
         $colums = array("Naam", "Verschenen", "Lokatie", "Artiest(en)", "Genre(s)", "Tracks");
         $rows = array();
         foreach ($array as $object){
-    var_dump($object->getLiedjes());
             $row = array();
+            $row[] = $object->getAlbumNummer();
             $row[] = $object->getNaam();
-            $row[] = $object->getVerschijningsdatumString();
+            $row[] = $object->getVerschijningsdatum()->format('Y');
             $row[] = $object->getLokatie();
-            $row[] = $object->getArtiesten();
-            $row[] = $object->getGenres();
-            $row[] = $object->getAantalLiedjes();
+            $row[] = $object->getAllArtiesten();
+            $row[] = $object->getAllGenres();
+            $row[] = $object->getLiedjes()->count();
             $rows[] = $row;
         }
         parent::__construct($colums, $rows);

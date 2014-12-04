@@ -5,8 +5,19 @@ use Engine\View\View;
 
 class genreController extends listController
 {
-    public function __construct()
+    public function __construct($entitymanager)
     {
-        
+         $array = $entitymanager->getRepository("Engine\Model\Genre")->findAll();
+        $colums = array("Naam","Omschrijving","Albums");
+        $rows = array();
+        foreach ($array as $object){
+            $row = array();
+            $row[] = $object->getNaam();
+            $row[] = $object->getNaam();
+            $row[] = $object->getOmschrijving();
+            $row[] = $object->getAlbums()->count();
+            $rows[] = $row;
+        }
+        parent::__construct($colums, $rows);
     }
 }

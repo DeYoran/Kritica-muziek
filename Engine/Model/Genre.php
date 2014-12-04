@@ -28,14 +28,49 @@ class Genre
     
     public function __construct()
     {
-        $this->albums = new ArrayCollection();
+        ;
     }
     
-    public function getAlbums()
+    function getNaam()
+    {
+        return $this->naam;
+    }
+
+    function getOmschrijving()
+    {
+        return $this->omschrijving;
+    }
+
+    function getAllAlbums()
     {
         return $this->albums->getValues();
     }
-    
+
+    function getAlbums()
+    {
+        return $this->albums;
+    }
+
+    function getLiedjes()
+    {
+        return $this->liedjes;
+    }
+
+    function getAllLiedjes()
+    {
+        return $this->liedjes->getValues();
+    }
+
+    function getAllArtiesten()
+    {
+        return $this->artiesten->getValues();
+    }
+
+    function setOmschrijving($omschrijving)
+    {
+        $this->omschrijving = $omschrijving;
+    }
+        
     function __toString(){
         return $this->naam;
     }

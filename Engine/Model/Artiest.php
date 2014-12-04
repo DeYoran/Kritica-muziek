@@ -72,19 +72,19 @@ class Artiest
         return $this->einddatum;
     }
 
-    function getAlbums()
+    function getAllAlbums()
     {
-        return $this->albums->getValues();
+        return $this->albums;
     }
 
-    function getGenres()
+    function getAllGenres()
     {
-        return $this->genres->getValues();
+        return $this->genres;
     }
 
-    function setNaam($naam)
+    function getAllLiedjes()
     {
-        $this->naam = $naam;
+        return $this->liedjes;
     }
 
     function setOmschrijving($omschrijving)
@@ -101,12 +101,7 @@ class Artiest
     {
         $this->einddatum = $einddatum;
     }
-
-    function setAlbums($albums)
-    {
-        $this->albums = $albums;
-    }
-    
+        
     function __toString(){
         return $this->naam;
     }
