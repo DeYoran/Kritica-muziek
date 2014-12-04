@@ -3,6 +3,23 @@ body{
     font-family: sans-serif;
 }
 
+header a{
+    color: black;
+}
+
+.homebutton.disabled{
+    background-color: #eee;
+    cursor: default;
+}
+
+.homebutton.disabled a{
+    cursor: default;
+}
+
+.homebutton.disabled:hover{
+    box-shadow: none;
+}
+
 header{
     position: fixed;
     height: 70px;

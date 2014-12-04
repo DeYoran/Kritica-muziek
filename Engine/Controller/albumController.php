@@ -5,7 +5,7 @@ use Engine\View\View;
 
 class albumController extends listController
 {
-    public function __construct($entitymanager)
+    public function __construct($entitymanager, $params)
     {
         $array = $entitymanager->getRepository("Engine\Model\Album")->findAll();
         $colums = array("Naam", "Verschenen", "Lokatie", "Artiest(en)", "Genre(s)", "Tracks");

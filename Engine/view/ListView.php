@@ -56,6 +56,7 @@ class ListView implements View
     public function view()
     {
         $this->content .= file_get_contents("./Engine/view/pages/listfoot.php");
+        $this->content .= "<a href='toevoegen/$_GET[url]'>toevoegen</a>";
         echo $this->content;
     }
 }

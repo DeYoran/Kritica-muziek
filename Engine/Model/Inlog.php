@@ -7,16 +7,19 @@
 class Inlog
 {
     /** @Id @Column(type="string") **/
-    protected $naam;
+    private $naam;
 	
     /** @Column(type="string") **/
-    protected $wachtwoord;
+    private $wachtwoord;
     
     /** @Column(type="string") **/
-    protected $salt;
+    private $salt;
     
     /** @Column(type="boolean") **/
-    protected $toegang;
+    private $toegang;
+    
+    /** @Column(type="string") **/
+    private $email;
 
     public function __construct() {
         
@@ -46,5 +49,17 @@ class Inlog
     public function setToegang($toegang){
         $this->toegang = $toegang;
     }
+    
+    function getEmail()
+    {
+        return $this->email;
+    }
+
+    function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+
 
 }

@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-            <h1>Kritica-muziek</h1>
+            <a href="/"><h1>Kritica-muziek</h1></a>
             <?php 
                 if(isset($_SESSION['kr-user']))
                 {

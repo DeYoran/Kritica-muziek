@@ -127,8 +127,19 @@ class Album
     {
         $this->lokatie = $lokatie;
     }
-
-    function __toString()
+    
+    function setGenres($genres){
+        $this->genres = $genres;
+    }
+    
+    function setArtiesten($artiesten){
+        $this->artiesten = $artiesten;
+    }
+    
+    function setLiedjes($liedjes){
+        $this->liedjes = $liedjes;
+    }
+                function __toString()
     {
         return $this->naam;
     }
