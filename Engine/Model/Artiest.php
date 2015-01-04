@@ -6,7 +6,7 @@ namespace Engine\Model;
  **/
 class Artiest
 {
-    /** @Id @Column(type="string") @GeneratedValue **/
+    /** @Id @Column(type="string") **/
     private $naam;
     /** @Column(type="string") **/
     private $omschrijving;
@@ -52,6 +52,10 @@ class Artiest
         
     }
     
+    function setNaam($naam){
+        return $this->naam = $naam;
+    }
+    
     function getNaam()
     {
         return $this->naam;
@@ -94,12 +98,12 @@ class Artiest
 
     function setBegindatum($begindatum)
     {
-        $this->begindatum = $begindatum;
+        $this->begindatum = new \DateTime($begindatum);
     }
 
     function setEinddatum($einddatum)
     {
-        $this->einddatum = $einddatum;
+        $this->einddatum = new \DateTime($einddatum);
     }
         
     function __toString(){

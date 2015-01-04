@@ -7,6 +7,11 @@ class genreController extends listController
 {
     public function __construct($entitymanager)
     {
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
          $array = $entitymanager->getRepository("Engine\Model\Genre")->findAll();
         $colums = array("Naam","Omschrijving","Albums");
         $rows = array();

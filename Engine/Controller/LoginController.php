@@ -19,6 +19,9 @@ class LoginController implements iController
             
     public function __construct($entityManager)
     {
+        if(isset($_SESSION['kr-user'])){
+            header("Location: /home");
+        }
         if(isset($_POST['naam']))
         {
             $user = new Inlog();

@@ -7,6 +7,11 @@ class nummerController extends listController
 {
     public function __construct($entitymanager)
     {
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
         $array = $entitymanager->getRepository("Engine\Model\Liedje")->findAll();
         $colums = array("Naam", "Album(s)", "Lokatie(s)", "Genre(s)");
         $rows = array();

@@ -28,7 +28,7 @@ class Genre
     
     public function __construct()
     {
-        ;
+        
     }
     
     function getNaam()
@@ -64,6 +64,11 @@ class Genre
     function getAllArtiesten()
     {
         return $this->artiesten->getValues();
+    }
+    
+    function setNaam($naam)
+    {
+        $this->naam = $naam;
     }
 
     function setOmschrijving($omschrijving)

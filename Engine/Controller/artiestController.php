@@ -7,6 +7,11 @@ class artiestController extends listController
 {
     public function __construct($entitymanager)
     {
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
          $array = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
         $colums = array("Naam", "Begonnen", "Gestopt", "Albums", "Liedjes");
         $rows = array();
@@ -14,7 +19,12 @@ class artiestController extends listController
             $row = array();
             $row[] = $object->getNaam();
             $row[] = $object->getNaam();
-            $row[] = $object->getBegindatum()->format('Y');
+            if($object->getBegindatum() != null){
+                $row[] = $object->getBegindatum()->format('Y');
+            }
+            else{
+                $row[] = "onbekend";
+            }
             if($object->getEinddatum() != null){
                 $row[] = $object->getEinddatum()->format('Y');
             }

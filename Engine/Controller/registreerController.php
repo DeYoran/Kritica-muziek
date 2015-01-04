@@ -19,6 +19,9 @@ class registreerController implements iController
             
     public function __construct($entityManager)
     {
+        if(isset($_SESSION['kr-user'])){
+            header("Location: /home");
+        }
         if(isset($_POST['naam']))
         {
             if($entityManager->find("Engine\Model\Inlog",$_POST['naam']) != null){

@@ -7,6 +7,11 @@ class albumController extends listController
 {
     public function __construct($entitymanager, $params)
     {
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
         $array = $entitymanager->getRepository("Engine\Model\Album")->findAll();
         $colums = array("Naam", "Verschenen", "Lokatie", "Artiest(en)", "Genre(s)", "Tracks");
         $rows = array();

@@ -10,6 +10,11 @@ class liedjeController implements iController
     
     public function __construct($entityManager, $nr)
     {
+        if(!isset($_SESSION['kr-user']))
+        {
+            header("Location: ./login");
+            die();
+        }
         $nr = intval($nr[0]);
         $liedje = $entityManager->find("Engine\Model\Liedje",$nr);
         $this->view = new playView($liedje);
