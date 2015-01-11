@@ -23,6 +23,6 @@ class genreController extends listController
             $row[] = $object->getAlbums()->count();
             $rows[] = $row;
         }
-        parent::__construct($colums, $rows);
+        parent::__construct($colums, $rows, true, '/artiest/');
     }
 }

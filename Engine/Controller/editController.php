@@ -2,10 +2,10 @@
 namespace Engine\Controller;
 use Engine\Controller\iController;
 use Engine\View\View;
-use Engine\View\AlbumToevoegen;
-use Engine\View\NummersToevoegen;
-use Engine\View\ArtiestToevoegen;
-use Engine\View\GenreToevoegen;
+use Engine\View\AlbumWijzigen;
+use Engine\View\NummersWijzigen;
+use Engine\View\ArtiestWijzigen;
+use Engine\View\GenreWijzigen;
 use Engine\Model\Album;
 use Doctrine\Common\Collections\ArrayCollection;
 use Engine\Model\Liedje;
@@ -15,7 +15,7 @@ use Engine\View\LiedjesToegevoegd;
 use Engine\View\ArtiestToegevoegd;
 use Engine\View\GenreToegevoegd;
 
-class toevoegenController implements iController
+class editController implements iController
 {
     private $view;
     
@@ -42,15 +42,15 @@ class toevoegenController implements iController
                 break;
             }
             case "album" : {
-                $this->album($entitymanager);
+                $this->album($entitymanager, $params[1]);
                 break;
             }
             case "artiest" : {
-                $this->artiest($entitymanager);
+                $this->artiest($entitymanager, $params[1]);
                 break;
             }
             case "genre" : {
-                $this->genre();
+                $this->genre($entitymanager, $params[1]);
                 break;
             }
             case "nummer" : {
@@ -101,7 +101,7 @@ class toevoegenController implements iController
     }
     
     private function submitAlbum($entitymanager){
-        $album = new Album();
+        $album = $entitymanager->find("Engine\Model\Album", $_POST['albumnummer']);
         $album->setNaam($_POST['naam']);
         $album->setVerschijningsdatum(new \DateTime($_POST['date']));
         $album->setLokatie($_POST['locatie']);
@@ -118,7 +118,6 @@ class toevoegenController implements iController
         }
         $album->setGenres($ag);
 
-        $entitymanager->persist($album);
         $entitymanager->flush();
         $nummer = $album->getAlbumNummer();
         $artiesten = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
@@ -129,42 +128,30 @@ class toevoegenController implements iController
         foreach ($allegenres as $genre){
             $genre = $genre->getNaam();
         }
-        $this->view = new NummersToevoegen($_POST['liedjes'], 
-                $_POST['genre'], 
-                $_POST['naam'],  
-                $_POST['artiest'], 
-                $artiesten,
-                $allegenres, 
-                $nummer);
+        
+        header( "refresh:0;url=/album");
+        
     }
     
     private function submitArtiest($entitymanager){
-        $artiest = new Artiest();
+        $artiest = $entitymanager->find("Engine\Model\Artiest", $_POST['naam']);
         $artiest->setNaam($_POST['naam']);
         $artiest->setOmschrijving($_POST['omschrijving']);
         $ag = new ArrayCollection();
-        foreach ($_POST['genre'] as $genre){
-            $dbgenre = $entitymanager->find("Engine\Model\Genre", $genre);
-            $ag->add($dbgenre);
-        }
-        $artiest->setGenres($ag);
         if($_POST['start'] != null){
             $artiest->setBegindatum($_POST['start']);
         }
         if($_POST['end'] != null){
             $artiest->setEinddatum($_POST['end']);
         }
-        $entitymanager->persist($artiest);
         $entitymanager->flush();
         $this->view = new ArtiestToegevoegd();
         header( "refresh:5;url=/home" );
     }
         
     private function submitGenre($entitymanager){
-        $genre = new Genre();
-        $genre->setNaam($_POST['naam']);
+        $genre = $entitymanager->find("Engine\Model\Genre", $_POST['naam']);
         $genre->setOmschrijving($_POST['omschrijving']);
-        $entitymanager->persist($genre);
         $entitymanager->flush();
         $this->view = new GenreToegevoegd();
         header( "refresh:5;url=/home" );
@@ -174,7 +161,8 @@ class toevoegenController implements iController
         
     }
     
-    private function album($entitymanager){
+    private function album($entitymanager, $album){
+        $album = $entitymanager->find("Engine\Model\Album", $album);
         $genres = $entitymanager->getRepository("Engine\Model\Genre")->findAll();
         $artiesten = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
         $genrelist = array();
@@ -185,10 +173,11 @@ class toevoegenController implements iController
         foreach ($artiesten as $artiest){
             $artiestlijst[] = $artiest->getNaam();
         }
-        $this->view = new AlbumToevoegen($genrelist, $artiestlijst);
+        $this->view = new AlbumWijzigen($album, $genrelist, $artiestlijst);
     } 
 
-    private function artiest($entitymanager){
+    private function artiest($entitymanager, $param){
+        $artiest = $entitymanager->find("Engine\Model\Artiest", $param);
         $genres = $entitymanager->getRepository("Engine\Model\Genre")->findAll();
         $artiesten = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
         $genrelist = array();
@@ -196,15 +185,16 @@ class toevoegenController implements iController
             $genrelist[] = $genre->getNaam();
         }
         $artiestlijst = array();
-        foreach ($artiesten as $artiest){
-            $artiestlijst[] = $artiest->getNaam();
+        foreach ($artiesten as $a){
+            $artiestlijst[] = $a->getNaam();
         }
-        $this->view = new ArtiestToevoegen($genrelist, $artiestlijst);
+        $this->view = new ArtiestWijzigen($artiest, $genrelist, $artiestlijst);
     }
     
-    private function genre()
+    private function genre($entitymanager, $param)
     {
-        $this->view = new GenreToevoegen();
+        $genre = $entitymanager->find("Engine\Model\Genre", $param);
+        $this->view = new GenreWijzigen($genre);
     }
 
     public function getView()

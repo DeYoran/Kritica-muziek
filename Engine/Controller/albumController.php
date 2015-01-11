@@ -5,7 +5,7 @@ use Engine\View\View;
 
 class albumController extends listController
 {
-    public function __construct($entitymanager, $params)
+    public function __construct($entitymanager, $param)
     {
         if(!isset($_SESSION['kr-user']))
         {
@@ -23,9 +23,16 @@ class albumController extends listController
             $row[] = $object->getLokatie();
             $row[] = $object->getAllArtiesten();
             $row[] = $object->getAllGenres();
-            $row[] = $object->getLiedjes()->count();
-            $rows[] = $row;
+            $row[] = $object->getLiedjes()->count(); 
+            if(isset($param[0])){
+                if(in_array($param[0], $object->getAllArtiesten())){
+                    $rows[] = $row;
+                }
+            }
+            else{
+                $rows[] = $row;
+            }
         }
-        parent::__construct($colums, $rows);
+        parent::__construct($colums, $rows, TRUE, '/nummer/');
     }
 }

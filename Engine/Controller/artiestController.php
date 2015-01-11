@@ -5,14 +5,14 @@ use Engine\View\View;
 
 class artiestController extends listController
 {
-    public function __construct($entitymanager)
+    public function __construct($entitymanager, $param)
     {
         if(!isset($_SESSION['kr-user']))
         {
             header("Location: ./login");
             die();
         }
-         $array = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
+        $array = $entitymanager->getRepository("Engine\Model\Artiest")->findAll();
         $colums = array("Naam", "Begonnen", "Gestopt", "Albums", "Liedjes");
         $rows = array();
         foreach ($array as $object){
@@ -39,8 +39,20 @@ class artiestController extends listController
                 }
             }
             $row[] = $liedjes;
-            $rows[] = $row;
+            if(isset($param[0])){
+                $genres = $object->getAllGenres();
+                $genreNamen = array();
+                foreach($genres as $g){
+                    $genreNamen[] = $g->getNaam();
+                }
+                if(in_array($param[0], $genreNamen)){
+                    $rows[] = $row;
+                }
+            }
+            else{
+                $rows[] = $row;
+            }
         }
-        parent::__construct($colums, $rows);
+        parent::__construct($colums, $rows, TRUE, '/album/');
     }
 }

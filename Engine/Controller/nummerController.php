@@ -5,7 +5,7 @@ use Engine\View\View;
 
 class nummerController extends listController
 {
-    public function __construct($entitymanager)
+    public function __construct($entitymanager, $param)
     {
         if(!isset($_SESSION['kr-user']))
         {
@@ -13,12 +13,13 @@ class nummerController extends listController
             die();
         }
         $array = $entitymanager->getRepository("Engine\Model\Liedje")->findAll();
-        $colums = array("Naam", "Album(s)", "Lokatie(s)", "Genre(s)");
+        $colums = array("Naam", "Artiest(en)", "Album(s)", "Lokatie(s)", "Genre(s)");
         $rows = array();
         foreach ($array as $object){
             $row = array();
             $row[] = $object->getLiedNummer();
             $row[] = $object->getNaam();
+            $row[] = $object->getAllAlbums()[0]->getAllArtiesten();
             $row[] = $object->getAllAlbums();
             $lokaties = array();
             foreach ($object->getAllAlbums() as $album){
@@ -26,7 +27,19 @@ class nummerController extends listController
             }
             $row[] = $lokaties;
             $row[] = $object->getAllGenres();
-            $rows[] = $row;
+            if(isset($param[0])){
+                $albums = $object->getAllAlbums();
+                $albumnrs = array();
+                foreach($albums as $a){
+                    $albumnrs[] = $a->getAlbumNummer();
+                }
+                if(in_array($param[0], $albumnrs)){
+                    $rows[] = $row;
+                }
+            }
+            else{
+                $rows[] = $row;
+            }
         }
         parent::__construct($colums, $rows, TRUE, "/liedje/");
     }

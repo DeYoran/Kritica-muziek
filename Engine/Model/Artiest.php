@@ -105,7 +105,12 @@ class Artiest
     {
         $this->einddatum = new \DateTime($einddatum);
     }
-        
+    
+    function setGenres($genres)
+    {
+        $this->genres = $genres;
+    }
+    
     function __toString(){
         return $this->naam;
     }

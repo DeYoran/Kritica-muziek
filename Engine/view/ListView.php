@@ -16,7 +16,12 @@ class ListView implements View
         foreach ($colums as $column){
             $headings .= "<td>$column</td>";
         }
-        $this->content .= "<thead>".$headings."</thead>";
+        $this->content .= "<thead>"
+                .$headings;
+        if($link){
+            $this->content .= "<td></td><td></td>";
+        }
+        $this->content .= "</thead>";
         foreach ($rows as $row){
             $linkto = $row[0];
             array_shift($row);
@@ -49,6 +54,9 @@ class ListView implements View
                     $this->content .= "</td>";
                 }
             }
+                if($link){
+                    $this->content .= "<td><a href='delete/$_GET[url]/$linkto'>verwijder</a></td><td><a href='edit/$_GET[url]/$linkto'>wijzig</a></td>";
+                }
             $this->content .= "</tr>";
         }
     }

@@ -22,14 +22,14 @@
         Genres
     </a>
 </div>
-<div id="Computer" class="homebutton disabled">
-    <a href="/computer">
+<div id="Computer" class="homebutton">
+    <a href="/connect/Computer/C:">
         <img src="resources/img/svg/folder67.svg" onerror="this.onerror=null; this.src='resources/img/png/folder67.png'">
         Computer
     </a>
 </div>
-<div id="NAS" class="homebutton disabled">
-    <a href="/nas">
+<div id="NAS" class="homebutton">
+    <a href="/connect/nas">
         <img src="resources/img/svg/sync.svg" onerror="this.onerror=null; this.src='resources/img/png/sync.png'">
         NAS
     </a>
